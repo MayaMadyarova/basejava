@@ -7,12 +7,12 @@ import com.urise.webapp.model.Resume;
  */
 public class ArrayStorage extends AbstractArrayStorage{
 
-   public void sort(Resume r) {
+    public void deleteResume(int index) {
+        storage[index] = storage[size - 1];
+    }
 
-   }
-
-   public void shift(int index) {
-       storage[index] = storage[size - 1];
+    public void insertResume(int index, Resume r) {
+        storage[size] = r;
    }
 
     public int getIndex(String uuid) {
