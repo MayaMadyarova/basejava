@@ -43,12 +43,11 @@ public abstract class AbstractArrayStorage implements Storage {
         int index = getIndex(r.getUuid());
         if (index >= 0) {
             throw new ExistStorageException(r.getUuid());
-        } else if (size >= STORAGE_LIMIT) {
+        } else if (size == STORAGE_LIMIT) {
             throw new StorageException("Storage overflow", r.getUuid());
         } else {
-            storage[size] = r;
-            size++;
             insertResume(index, r);
+            size++;
         }
     }
 
