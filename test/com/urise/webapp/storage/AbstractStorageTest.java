@@ -12,7 +12,7 @@ import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertSame;
 import static org.junit.Assert.assertArrayEquals;
 
-public abstract class AbstractArrayStorageTest {
+public abstract class AbstractStorageTest {
 
     private final Storage storage;
 
@@ -27,7 +27,7 @@ public abstract class AbstractArrayStorageTest {
 
     private final String UUID_NOT_EXIST = "dummy";
 
-    protected AbstractArrayStorageTest(Storage storage) {
+    protected AbstractStorageTest(Storage storage) {
         this.storage = storage;
     }
 
