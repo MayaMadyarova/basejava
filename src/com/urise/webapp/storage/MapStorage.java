@@ -2,57 +2,57 @@ package com.urise.webapp.storage;
 
 import com.urise.webapp.model.Resume;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class MapStorage extends AbstractStorage {
 
-    private Map<String, Resume> Map = new HashMap();
+    private final Map<String, Resume> map = new HashMap();
 
     @Override
-    protected void doUpdate(Resume r, Object searchKey) {
-        Map.put((String) searchKey, r);
+    protected void doUpdate(Resume r, Object resume) {
+        map.put(r.getUuid(), r);
     }
 
     @Override
-    protected boolean isExist(Object searchKey) {
-        return Map.containsKey((String) searchKey);
+    protected boolean isExist(Object resume) {
+        return map.containsKey(resume);
     }
 
     @Override
-    protected void doSave(Resume r, Object searchKey) {
-        Map.put((String) searchKey, r);
+    protected void doSave(Resume r, Object resume) {
+        map.put(r.getUuid(), r);
     }
 
     @Override
-    protected void doDelete(Object searchKey) {
-        Map.remove((String) searchKey);
+    protected void doDelete(Object resume) {
+        map.remove(((Resume) resume).getUuid());
     }
 
     @Override
-    protected Resume doGet(Object searchKey) {
-        return Map.get((String) searchKey);
+    protected Resume doGet(Object resume) {
+        return (Resume) resume;
     }
 
     @Override
-    protected Object getSearchKey(String uuid) {
-        return uuid;
+    protected Resume getSearchKey(String uuid) {
+        return map.get(uuid);
     }
 
     @Override
     public void clear() {
-        Map.clear();
+        map.clear();
     }
 
     @Override
-    public Resume[] getAll() {
-        Resume[] resumes = new Resume[Map.size()];
-        Map.values().toArray(resumes);
-            return resumes;
+    public List<Resume> doCopyAll() {
+        return new ArrayList(map.values());
     }
 
     @Override
     public int size() {
-        return Map.size();
+        return map.size();
     }
 }
